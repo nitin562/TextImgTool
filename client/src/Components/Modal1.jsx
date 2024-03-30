@@ -17,11 +17,11 @@ export default function Modal1({open,setopen,length=1,setDisappearBtn=null,setBl
     setopen(false)
   }
   return (
-    <div>
-        <Modal closable={false} open={open} title="Add New Block" footer={[
-          <Button key={1} onClick={onPicture}>Picture</Button>,
+    <div >
+        <Modal className='backdrop-blur-md' closable={false} open={open} title="Add New Block" footer={[
+          <Button key={1} onClick={onPicture} >Picture</Button>,
           <Button key={2} onClick={onText}>Text</Button>
-          ,<Button key={3} danger={true} onClick={onCancel}>Cancel</Button>
+          ,<Button key={3} type='primary' danger={true} onClick={onCancel}>Cancel</Button>
         ]}>
           Choose Block Type
         </Modal>

@@ -7,7 +7,7 @@ export default function SpaceTile({ index, setarr }) {
   const onBtnClick = () => {
     setopen(true);
   };
-  const dropArea = useRef();
+
   // Footer for popup
   const hoverContent = (
     <Button onClick={onBtnClick} className="text-white bg-slate-800/40">
@@ -49,40 +49,7 @@ export default function SpaceTile({ index, setarr }) {
       return newArr
     })
   }
-  // Drag and drop
-  const handleDragOver = (e) => {
-    e.preventDefault();
-  };
-  // drop at index
-  const handleDrop = (e) => {
-    e.preventDefault();
-    let currIndex = Number.parseInt(sessionStorage.getItem("currIndex"));
-    sessionStorage.clear();
-    let finalIndex = index;
-    console.log(finalIndex, currIndex, index, typeof index);
-    if (currIndex === finalIndex || currIndex + 1 === finalIndex) {
-      return;
-    }
-// Change the arr
-    setarr((prev) => {
-      let Data = prev[currIndex];
-      let newArr = [];
-      for (let idx = 0; idx < prev.length; idx++) {
-        if (idx === finalIndex) {
-          newArr.push(Data);
-        }
-        if (idx === currIndex) {
-          continue;
-        }
-        newArr.push(prev[idx]);
-      }
-      if (finalIndex === prev.length) {
-        newArr.push(Data);
-      }
-      return newArr;
-    });
-  };
-
+ 
   return (
     <>
       <Popover
@@ -91,10 +58,7 @@ export default function SpaceTile({ index, setarr }) {
         color="rgb(110 231 183)"
       >
         <div
-          ref={dropArea}
           className="w-full h-4 cursor-pointer"
-          onDragOver={handleDragOver}
-          onDrop={handleDrop}
         >
           {/* hover space */}
         </div>

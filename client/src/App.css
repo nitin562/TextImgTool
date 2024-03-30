@@ -1,9 +1,11 @@
+
 /* Scrollbar design */
 .scrollbar {
     overflow: hidden scroll;
 }
 .scrollbar::-webkit-scrollbar {
   width: 0.3rem;
+  
 }
 .scrollbar::-webkit-scrollbar-track {
   width: 0.1rem;

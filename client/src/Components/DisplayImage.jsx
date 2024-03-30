@@ -1,5 +1,6 @@
 import { Button, Image, Popover } from "antd";
 import React, { useEffect, useRef, useState } from "react";
+import {useDrag,useDrop} from "react-dnd"
 import SpaceTile from "./SpaceTile";
 import Drawer2 from "./Drawer2";
 import leftIcon from "/left.png";
@@ -8,13 +9,50 @@ import rightIcon from "/right.png";
 
 export default function DisplayImage({ index, url, setarr }) {
   const [open, setopen] = useState(-1);
- 
+  const [popOverVisible, setPopOverVisible] = useState(true)
   const [alignment, setalignment] = useState("center") //alignment for img
-  // drag event
-  const handleDrag = (e) => {
-    e.preventDefault();
-    sessionStorage.setItem("currIndex", index);
+  //drag
+  const [{isDragging},refDrag]=useDrag(()=>({
+    type:"Card",
+    item:{index},
+    collect:(monitor)=> ({isDragging:monitor.isDragging()})
+  }),[index])
+  const[{isOver},refDrop]=useDrop(()=>{return {
+    accept:"Card",
+    drop:(item,monitor)=>{
+      moveCard(item.index)
+    },
+    collect:(monitor)=>{
+      return {isOver:monitor.isOver()}
+    }
+  }})
+  const HandleMouseEnter = () => {
+    if (isDragging) {
+      setPopOverVisible(false);
+    } else {
+      setPopOverVisible(true);
+    }
   };
+  const HandleMouseOut = () => {
+    setPopOverVisible(true);
+  };
+  const moveCard=(draggedIndex)=>{
+    setarr((prev) => {
+      let Data = prev[draggedIndex];
+      let newArr = [];
+      for (let idx = 0; idx < prev.length; idx++) {
+        if (idx === index) {
+          newArr.push(Data);
+        }
+        if(idx===draggedIndex){
+          continue
+        }
+        newArr.push(prev[idx]);
+      }
+  
+      return newArr;
+    });
+  }
   //open drawer
   const handleChange = () => {
     setopen(1);
@@ -78,15 +116,19 @@ export default function DisplayImage({ index, url, setarr }) {
     <>
       <SpaceTile index={index} setarr={setarr} />
 
-      <div className="flex w-full border-[1px] overflow-hidden border-transparent hover:bg-slate-500/20 hover:border-white" style={{justifyContent:alignment}} onDrag={handleDrag} draggable>
-        <Popover content={content} title="Customize Image Block">
+      <div className="flex w-full border-[1px] overflow-hidden border-transparent hover:bg-slate-500/20" style={{justifyContent:alignment,border:isOver?"0.1rem dashed #fff":""}} ref={node=>refDrag(refDrop(node))} onDrag={()=>setPopOverVisible(false)} onMouseEnter={HandleMouseEnter} onMouseLeave={HandleMouseOut}>
+        {popOverVisible&&<Popover content={content} title="Customize Image Block">
           <div
             className="w-1/4 "
-           
           >
             <Image src={url} className="border-2" />
           </div>
-        </Popover>
+        </Popover>}
+        {!popOverVisible&&<div
+            className="w-1/4 "
+          >
+            <Image src={url} className="border-2" />
+          </div>}
       </div>
       <SpaceTile index={index + 1} setarr={setarr} />
       <Drawer2

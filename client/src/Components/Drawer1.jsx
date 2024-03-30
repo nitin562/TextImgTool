@@ -102,7 +102,9 @@ export default function Drawer1({
   return (
     <div>
       <Drawer
-        className="p-2"
+      
+        className="p-2 bg-slate-800/20"
+        
         footer={[
           <Button
             danger={true}
@@ -127,13 +129,7 @@ export default function Drawer1({
         title="Enter Text Block"
       >
         <div ref={RefTextEditor}></div>
-        {/* <Input.TextArea
-          placeholder="Type Something.."
-          value={text}
-          onChange={onChangeText}
-          rows={5}
-          className="text-lg font-sans"
-        ></Input.TextArea> */}
+        
         <p className="text-red-500">Max Count is {count} characters</p>
       </Drawer>
     </div>
