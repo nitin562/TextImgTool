@@ -9,9 +9,10 @@ export default function Drawer1({
   textfunc = null,
   index,
   CustomText = null,
+  words=250
 }) {
 
-  const [count, setcount] = useState(250);
+  const [count, setcount] = useState(words);
   const [quill, setquill] = useState(null);
   let prevCount = 0;  //saving previous count in same namespace
   // On change text check word limit
@@ -39,14 +40,14 @@ export default function Drawer1({
   const onInsert = () => {
     //if custom func is given then invoke
     if (textfunc !== null && index !== null && quill) {
-      textfunc(index, quill.getContents(), quill.root.innerHTML, setarr);
+      textfunc(index, quill.getContents(), quill.root.innerHTML, setarr,count);
       setopen(-1);
       return;
     }
     setarr((prev) => {
       return [
         ...prev,
-        { type: 0, content: quill.getContents(), html: quill.root.innerHTML },
+        { type: 0, content: quill.getContents(), html: quill.root.innerHTML,words:count },
       ];
     });
     setopen(-1);
@@ -115,7 +116,8 @@ export default function Drawer1({
             Cancel
           </Button>,
           <Button
-            className="float-right ml-4"
+            type="primary"
+            className="float-right ml-4 text-black"
             disabled={count === 250}
             key={1}
             onClick={onInsert}

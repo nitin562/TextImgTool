@@ -15,10 +15,10 @@ export default function SpaceTile({ index, setarr }) {
     </Button>
   );
   // Custom Insertion at new index
-  const insertTextFunc = (index, content,html, setarr) => {
+  const insertTextFunc = (index, content,html, setarr,count) => {
     setarr((prev) => {
       if (index === prev.length) {
-        return [...prev, { type: 0, content,html }];
+        return [...prev, { type: 0, content,html,words:count }];
       }
       let newarr = [];
 
@@ -70,6 +70,7 @@ export default function SpaceTile({ index, setarr }) {
         insertTextFunc={insertTextFunc}
         index={index}
         insertImgFunc={insertImgFunc}
+        
       />
     </>
   );

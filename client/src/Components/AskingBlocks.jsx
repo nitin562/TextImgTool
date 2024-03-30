@@ -12,7 +12,7 @@ export default function AskingBlocks({arr=null,setArr,showModal,setshowModal,ins
         length={arr?.length||1}
         setBlockType={setBlockType}
       />
-      <Drawer1 open={blockType === 0} textfunc={insertTextFunc} setopen={setBlockType} setarr={setArr} index={index} />
+      <Drawer1 open={blockType === 0} textfunc={insertTextFunc} setopen={setBlockType} setarr={setArr} index={index}  />
       <Drawer2 open={blockType === 1} setopen={setBlockType} setarr={setArr} imgFunc={insertImgFunc} />
     </>
   );

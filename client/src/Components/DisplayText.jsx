@@ -63,7 +63,7 @@ export default function DisplayText({ data, index, setarr }) {
     setopen(1);
   };
   // Custom edit and save
-  const CustomEdit = (index, content, html, ChangeArr) => {
+  const CustomEdit = (index, content, html, ChangeArr,count) => {
     //data-text string
     console.log(content, html);
     ChangeArr((prev) => {
@@ -71,6 +71,8 @@ export default function DisplayText({ data, index, setarr }) {
 
       newArr[index].content = content;
       newArr[index].html = html;
+      newArr[index].words = count;
+
       console.log(newArr);
 
       return newArr;
@@ -99,7 +101,7 @@ export default function DisplayText({ data, index, setarr }) {
   }, [data.html,popOverVisible]);
   return (
     <div className="w-full ">
-      <SpaceTile index={index} setarr={setarr} />
+      <SpaceTile index={index} setarr={setarr}  />
       <div
         className="w-full"
         onDrag={() => setPopOverVisible(false)}
@@ -110,7 +112,7 @@ export default function DisplayText({ data, index, setarr }) {
         {popOverVisible && (
           <Popover content={HoverContent} title="Customize Text Block">
             <Card
-              className=" cursor-pointer bg-transparent border-[1px] rounded-lg border-transparent hover:bg-slate-500/20 text-lg  text-white"
+              className=" cursor-pointer bg-transparent border-[1px] rounded-lg border-transparent hover:bg-slate-500/30 text-lg  text-white"
               style={{
                 opacity: isDragging ? 0.5 : 1,
                 border: isOver ? "0.1rem dashed #fff" : "",
@@ -148,7 +150,7 @@ export default function DisplayText({ data, index, setarr }) {
           </Card>
         )}
       </div>
-      <SpaceTile index={index + 1} setarr={setarr} />
+      <SpaceTile index={index + 1} setarr={setarr}  />
       <Drawer1
         key={index}
         index={index}
@@ -157,6 +159,7 @@ export default function DisplayText({ data, index, setarr }) {
         setopen={setopen}
         textfunc={CustomEdit}
         CustomText={data.content}
+        words={data.words}
       />
     </div>
   );

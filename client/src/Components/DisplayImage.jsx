@@ -119,7 +119,7 @@ export default function DisplayImage({ index, url, setarr }) {
       <div className="flex w-full border-[1px] overflow-hidden border-transparent hover:bg-slate-500/20" style={{justifyContent:alignment,border:isOver?"0.1rem dashed #fff":""}} ref={node=>refDrag(refDrop(node))} onDrag={()=>setPopOverVisible(false)} onMouseEnter={HandleMouseEnter} onMouseLeave={HandleMouseOut}>
         {popOverVisible&&<Popover content={content} title="Customize Image Block">
           <div
-            className="w-1/4 "
+            className="w-full md:w-[35%]"
           >
             <Image src={url} className="border-2" />
           </div>

@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import { Drawer, Button, Spin } from "antd";
 import inbox from "/inbox.png";
-
+import DeleteIcon from "/delete.png"
 export default function Drawer2({ open, setopen, setarr,imgFunc=null }) {
   
   const [imgUrl, setImgUrl] = useState(null);
@@ -73,7 +73,7 @@ export default function Drawer2({ open, setopen, setarr,imgFunc=null }) {
         >
           Cancel
         </Button>,
-        <Button className="float-right ml-4" disabled={!imgUrl} key={1} onClick={onInsert}>
+        <Button type="primary" className="text-black float-right ml-4" disabled={!imgUrl} key={1} onClick={onInsert}>
           Insert
         </Button>,
       ]}
@@ -100,7 +100,7 @@ export default function Drawer2({ open, setopen, setarr,imgFunc=null }) {
               className="rounded-lg p-1 hover:bg-red-400 hover:text-white cursor-pointer"
               onClick={ondelete}
             >
-              Delete
+              <img src={DeleteIcon} alt="delete" className="p-1 w-[2rem] aspect-square" />
             </p>
           )}
         </div>
