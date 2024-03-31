@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 import { Button, Drawer, Input } from "antd";
 import { Quill } from "react-quill";
 import "react-quill/dist/quill.snow.css";
@@ -14,6 +14,7 @@ export default function Drawer1({
 
   const [count, setcount] = useState(words);
   const [quill, setquill] = useState(null);
+  const textEditorRed=useRef
   let prevCount = 0;  //saving previous count in same namespace
   // On change text check word limit
   const onChangeText = (delta, oldDelta, source) => {
@@ -89,17 +90,19 @@ export default function Drawer1({
     quill.on("text-change", onChangeText);
   }, [quill]);
   useEffect(() => {
+    console.log(index,words,CustomText,open,quill)
   
     if (open && quill) {
       if(CustomText){
         quill.setContents(CustomText)
+        setcount(words)
       }
       else{
         quill.root.innerHTML=""
       }
     }
     
-  }, [open,CustomText]);
+  }, [open,CustomText,quill]);
   return (
     <div>
       <Drawer

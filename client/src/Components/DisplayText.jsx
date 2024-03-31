@@ -13,6 +13,7 @@ export default function DisplayText({ data, index, setarr }) {
       type: "Card",
       item: { index },
       collect: (monitor) => {
+       
         return { isDragging: monitor.isDragging() };
       },
     }),
@@ -40,6 +41,9 @@ export default function DisplayText({ data, index, setarr }) {
     setPopOverVisible(true);
   };
   const moveCard = (draggedIndex) => {
+   
+
+
     setarr((prev) => {
       let Data = prev[draggedIndex];
       let newArr = [];
@@ -99,6 +103,9 @@ export default function DisplayText({ data, index, setarr }) {
   useEffect(() => {
     refCard.current.innerHTML = data.html;
   }, [data.html,popOverVisible]);
+  useEffect(()=>{
+    console.log(data.content)
+  },[data.content])
   return (
     <div className="w-full ">
       <SpaceTile index={index} setarr={setarr}  />
@@ -152,7 +159,7 @@ export default function DisplayText({ data, index, setarr }) {
       </div>
       <SpaceTile index={index + 1} setarr={setarr}  />
       <Drawer1
-        key={index}
+        
         index={index}
         setarr={setarr}
         open={open != -1}
