@@ -92,7 +92,7 @@ export default function Drawer2({ open, setopen, setarr,imgFunc=null }) {
       </div>
       {loading && <Spin />}
       {!loading && (
-        <div className="my-1 text-md text-red-400 flex justify-between ">
+        <div className="my-1 text-md text-red-400 flex-wrap flex justify-between ">
           <p>{imgName}</p>
           {imgUrl && (
             <p
