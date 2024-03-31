@@ -10,7 +10,11 @@ function App() {
   const [TouchStart, setTouchStart] = useState(false)
   useEffect(()=>{
     const onTouchStart=()=>{
+      if(TouchStart){
+        return
+      }
       console.log(true)
+
       setTouchStart(true)
     }
     window.addEventListener("touchstart",onTouchStart)
