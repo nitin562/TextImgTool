@@ -5,8 +5,7 @@ import Drawer1 from "./Drawer1";
 import { useDrag, useDrop } from "react-dnd";
 export default function DisplayText({ data, index, setarr }) {
   const refCard = useRef();
-  // const refDrag=useRef()
-  // const [isDragging, setisDragging] = useState(false)
+
   const [popOverVisible, setPopOverVisible] = useState(true);
   const [{ isDragging }, refDrag] = useDrag(
     () => ({
@@ -69,16 +68,12 @@ export default function DisplayText({ data, index, setarr }) {
   // Custom edit and save
   const CustomEdit = (index, content, html, ChangeArr,count) => {
     //data-text string
-    console.log(content, html);
+    
     ChangeArr((prev) => {
       let newArr = [...prev];
-
       newArr[index].content = content;
       newArr[index].html = html;
       newArr[index].words = count;
-
-      console.log(newArr);
-
       return newArr;
     });
   };
@@ -104,7 +99,7 @@ export default function DisplayText({ data, index, setarr }) {
     refCard.current.innerHTML = data.html;
   }, [data.html,popOverVisible]);
   useEffect(()=>{
-    console.log(data.content)
+  
   },[data.content])
   return (
     <div className="w-full ">

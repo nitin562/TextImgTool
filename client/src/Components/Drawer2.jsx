@@ -30,7 +30,6 @@ export default function Drawer2({ open, setopen, setarr,imgFunc=null }) {
     const files = e.target.files;
     if (files.length > 0) {
       const file = files[0];
-      console.log(file);
 
       setimgName(file.name);
       const reader = new FileReader();

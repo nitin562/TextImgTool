@@ -14,7 +14,7 @@ export default function Drawer1({
 
   const [count, setcount] = useState(words);
   const [quill, setquill] = useState(null);
-  const textEditorRed=useRef
+
   let prevCount = 0;  //saving previous count in same namespace
   // On change text check word limit
   const onChangeText = (delta, oldDelta, source) => {
@@ -60,7 +60,7 @@ export default function Drawer1({
   // Quill editor creation
   const RefTextEditor = useCallback((wrap) => {
     if (wrap === null) {
-      console.log(open);
+
       return;
     }
     const textEditor = new Quill(wrap, {
@@ -90,7 +90,7 @@ export default function Drawer1({
     quill.on("text-change", onChangeText);
   }, [quill]);
   useEffect(() => {
-    console.log(index,words,CustomText,open,quill)
+
   
     if (open && quill) {
       if(CustomText){
