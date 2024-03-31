@@ -9,7 +9,10 @@ import { useEffect, useState } from 'react';
 function App() {
   const [TouchStart, setTouchStart] = useState(false)
   useEffect(()=>{
-    const onTouchStart=()=>setTouchStart(true)
+    const onTouchStart=()=>{
+      console.log(true)
+      setTouchStart(true)
+    }
     window.addEventListener("touchstart",onTouchStart)
     return()=>{
       window.removeEventListener("touchstart",onTouchStart)
