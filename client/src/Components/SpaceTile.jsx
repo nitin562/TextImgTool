@@ -24,7 +24,7 @@ export default function SpaceTile({ index, setarr }) {
 
       for (let idx = 0; idx < prev.length; idx++) {
         if (idx === index) {
-          newarr.push({ type: 0, content,html });
+          newarr.push({ type: 0, content,html ,words:count});
         }
         newarr.push(prev[idx]);
       }
