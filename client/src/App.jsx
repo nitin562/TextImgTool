@@ -1,19 +1,19 @@
-import { DndProvider } from 'react-dnd'
+import { DndProvider } from "react-dnd";
 
-import { TouchBackend } from 'react-dnd-touch-backend';
-import './App.css'
-import Home from './Components/Home'
+import { TouchBackend } from "react-dnd-touch-backend";
+import "./App.css";
+import Home from "./Components/Home";
 
-import { useEffect, useState } from 'react';
+import { useEffect, useState } from "react";
 
 function App() {
-  const [TouchStart, setTouchStart] = useState(false)
-  
+  const [TouchStart, setTouchStart] = useState(false);
+
   return (
-    <DndProvider backend={TouchBackend} options={{enableMouseEvents:true}}>
-    <Home/>
+    <DndProvider backend={TouchBackend} options={{ enableMouseEvents: true }}>
+      <Home />
     </DndProvider>
-  )
+  );
 }
 
-export default App
+export default App;
