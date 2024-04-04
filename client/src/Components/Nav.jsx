@@ -53,7 +53,7 @@ export default function Nav({ showModal, setArr }) {
         )}</div>}
         <div className="flex gap-x-2 justify-end">
         {login && (
-          <Popover content={content} color="rgb(255,255,255,0.2)">
+          <Popover content={content} trigger="click" color="rgb(255,255,255,0.2)">
             <div className="rounded-full flex justify-center cursor-pointer items-center md:text-xl w-8 h-8 bg-green-700">
               <span className="text-white">
                 {sessionStorage.getItem("name")[0]}
